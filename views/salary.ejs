@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/styles/salary.css">
+    <title>Salary</title>
+</head>
+
+<body>
+    <h1>this is the salary page</h1>
+
+    <p> you had worked: <%= totalhours %> total hours that month. </p>
+
+    <% if(overTime125> 0) { %>
+        <% let sum125 = ((curHours.salary * overTime125)* 1.25) %>
+
+        <p>your hour rate is: <%= curHours.salary %></p>
+        <p>your base is: <%= curHours.base %></p>
+
+        <p> out of that you had worked <%= overTime125 %> overtime hours in 125% rate. which is <%=  sum125  %> shekel</p>
+        <% } %>
+
+     <% if(overTime150> 0) { %>
+        <% let sum150 = ( (curHours.salary * 1.5) * overTime150)  %>
+        <p> and <%= overTime150 %> overtime hours in 150% rate. which is <%= sum150  %> shekel </p>
+        <% } %>
+
+</body>
+
+</html>

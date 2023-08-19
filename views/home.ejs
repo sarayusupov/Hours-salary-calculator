@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <title>Work Hours Calculator</title>
+    <link rel="stylesheet" type="text/css" href="/styles/home.css">
+
+</head>
+
+
+<body>
+
+    <section class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-lg-3 text-center" id="selector">
+                <h2>select a year and a month</h2>
+                <form action="/calendar" method="post" id="select">
+                    <p>
+                        <label for="year">select year</label>
+                        <input type="number" id="year" name="year" placeholder="year">
+                    </p>
+                    <p>
+                        <label for="month">select month</label>
+                        <input type="number" max="12"  name="month" id="month" placeholder="month" min="1">
+                    </p>
+                    <p><button>continue</button></p>
+
+                </form>
+            </div>
+            <div class="col-lg-6 " id="description">
+                <h1>Welcome to work hours!</h1>
+                <p>A web app that was created specifically for Sunshine (aka Alona). This app calculates work hours and shows your salary at the end of the month. It allows you
+                    to input your hourly wage and the number of hours you worked each day. The app would then
+                    calculate the total earnings for the month, and display the amount and the calculating process. You could also view the
+                    work hours for each day and, potentially have the option to edit or delete entries.
+                    Please note that the app dose not sync with the Hebrew calendar, so make sure to mark your holidays accordingly (with absence).
+                    </p>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

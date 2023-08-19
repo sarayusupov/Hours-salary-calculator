@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="C:\Users\Sara\Desktop\udemy\WorkHours\app.js"></script>
+    <!-- Bootstrap CSS -->   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+
+    <link rel="stylesheet" href="/styles/calendar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.google.com/share?selection.family=Quicksand:wght@300;400;500;600;700">
+    <title>Calendar</title>
+
+
+</head>
+
+<script>
+
+
+    function absenceFunc(checkbox) {
+
+        let checkboxId = checkbox.id;
+        let startId = "start-" + checkboxId.split("-")[1];
+        let finishId = "finish-" + checkboxId.split("-")[1];
+        let lunchId = "lunch-" + checkboxId.split("-")[1];
+        if (checkbox.checked == true) {
+            document.getElementById(startId).disabled = true;
+            document.getElementById(finishId).disabled = true;
+            document.getElementById(lunchId).disabled = true;
+
+
+        } else {
+            document.getElementById(startId).disabled = false;
+            document.getElementById(finishId).disabled = false;
+            document.getElementById(lunchId).disabled = false;
+
+        }
+    };
+
+
+
+</script>
+
+<body>
+
+    <section class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-sm-6">
+                <div class="container">
+                    <div class="calendar">
+                        <div class="month">
+                            <i class="fas "></i>
+                            <div class="date">
+                                <h1>
+                                    <%= monthName %>
+                                </h1>
+                                <p>
+                                    <%= year %>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="weekdays">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>workdays
+                        <div class="days">
+                            <% let count=0; %>
+                                <% dateBefore=dateBefore- firstDayOfWeek +1 %>
+                                    <% for(let j=firstDayOfWeek; j>0; j--){ %>
+                                        <div class="prev-date">
+                                            <%= `${dateBefore}` %>
+                                        </div>
+                                        <% dateBefore=dateBefore +1 %>
+                                            <% count++ %>
+                                                <% } %>
+
+                                                    <% let days="" ; %>
+                                                        <% for( let i=1; i<=lastDay; i++){ %>
+                                                            <div class="">
+                                                                <%= `${i} ` %>
+                                                            </div>
+                                                            <% count++ %>
+                                                                <% } %>
+
+                                                                    <% for(let k=1; k<=(42 - count); k++){ %>
+                                                                        <div class="next-date">
+                                                                            <%= `${k}` %>
+                                                                        </div>
+                                                                        <% } %>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+                <div id="time">
+
+                    <form action="/hours" method="POST">
+                        <p>
+                            <label for="salary">Salary per hour (in the paycheck):</label>
+                            <input type="number" id="salary" name="salary" step="0.01" required>
+                        </p>
+                        <p>
+                            <label for="base">Base salary (WITH ALL ADDITIONS):</label>
+                            <input type="number" id="base" name="base" step="0.01" required>
+                            <input type="hidden" name="monthName" value="<%= monthName %>">
+                            <input type="hidden" name="yearName" value="<%= year %>">
+                            <input type="hidden" name="workdays" value="<%= workdays.length %>" />
+                        </p>
+                        <div>
+                            <h2>There were <%= `${workdays.length} ` %> working days </h2>
+                            <p>Workdays: <%= workdays.join(', ') %>   </p>
+                            
+                        </div>
+
+                            <% for(let i=0; i<workdays.length; i++){ %>
+                                <p>
+                                    <li>
+                                        <%= monthName %>
+                                            <%= workdays[i] %>
+
+                                                <label for="start-<%= i %>">check in:</label>
+                                                <input type="time" id="start-<%= i %>" name="hours[start]" required>
+                                                <label for="finish-<%= i %>">check out:</label>
+                                                <input type="time" name="hours[finish]" id="finish-<%= i %>" required>
+                                                <label for="lunch">Lunch: </label>
+                                                <input type="checkbox" name="hours[lunch]" id="lunch-<%= i %>">
+                                                <span style="color: rgb(195, 100, 100);">
+                                                    <label for="absence-<%= i %>">Absence:</label>
+                                                    <input type="hidden" name="hours[absence][<%= i %>]" value="0">
+                                                    <input type="checkbox" name="hours[absence][<%= i %>]" value="1" id="absence-<%= i %>"
+                                                     onclick="absenceFunc(this)">
+                                                    
+                                                </span>
+
+                                    </li>
+                                </p>
+                                <% } %>
+
+                                
+                                    <button>Subbmit Hours</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+</body>
+
+</html>
